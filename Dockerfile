@@ -1,9 +1,12 @@
 FROM debian:bullseye
 LABEL maintainer "d-r-e aka darodrig"
 RUN apt-get update
-RUN apt-get install -yq wget curl vim make clang gcc git valgrind watch make man iputils-ping
-RUN apt-get install -yq nasm gcc binwalk binutils strace ltrace
+RUN apt-get install -yq wget curl vim make clang gcc git valgrind watch man
+RUN apt-get install -yq iputils-ping netcat
+RUN apt-get install -yq nasm binwalk binutils strace ltrace
 RUN apt-get install -yq zsh
+RUN apt-get install -yq python3-pip
+RUN pip3 install pandas numpy jupyter sklearn matplotlib keras
 ENV SHELL /usr/bin/zsh
 RUN git clone https://github.com/radareorg/radare2 && radare2/sys/install.sh
 
