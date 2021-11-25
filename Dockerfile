@@ -28,5 +28,6 @@ LABEL maintainer "d-r-e aka darodrig"
     RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 # le norminette
     RUN pip3 install norminette
+RUN apt-get install -yq sudo
 RUN apt-get autoremove -yq
 ENTRYPOINT [ "/usr/bin/zsh" ]
