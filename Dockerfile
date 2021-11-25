@@ -9,7 +9,7 @@ RUN apt-get install -yq python3-pip
 RUN pip3 install pandas numpy jupyter sklearn matplotlib keras
 ENV SHELL /usr/bin/zsh
 RUN git clone https://github.com/radareorg/radare2 && radare2/sys/install.sh
-
+RUN git clone 'https://github.com/k-vernooy/tetris' && cd tetris && make && make install
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.2/zsh-in-docker.sh)" -- \
     -t godzilla \
     -p git -p 'history-substring-search' \
