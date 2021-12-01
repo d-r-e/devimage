@@ -44,9 +44,15 @@ LABEL maintainer "d-r-e aka darodrig"
 	RUN curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/themes/gozilla.zsh-theme > /root/.oh-my-zsh/themes/godzilla.zsh-theme
 	RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 # le norminette
+<<<<<<< HEAD
 	RUN pip3 install norminette
 # install github cli
 	RUN wget https://github.com/cli/cli/releases/download/v2.2.0/gh_2.2.0_linux_amd64.deb && \
 		dpkg -i gh_2.2.0_linux_amd64.deb && rm gh_2.2.0_linux_amd64.deb
 RUN apt-get autoremove -yq && apt-get clean && apt-get autoclean
+=======
+    RUN pip3 install norminette
+RUN apt-get install -yq sudo
+RUN apt-get autoremove -yq
+>>>>>>> 7ecdb4461d616567de1ebf113477d078336b7e30
 ENTRYPOINT [ "/usr/bin/zsh" ]
