@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -e
+set -epux
 
 docker build -t darodrig/devimage .
+
 docker push darodrig/devimage:latest
