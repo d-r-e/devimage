@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 set -e
 
@@ -53,16 +53,15 @@ EOL
     echo "\nPlease open a new shell to finish installation"
 }
 
-brew --version || install_brew
-brew install watch \
+brew --version &>/dev/null || install_brew
+brew install \
+    watch \
     tree \
     radare2 \
     ncdu \
     nasm \
-    telnet \
-    wakatime-cli \
     python@3.10 \
-    wakatime-cli
-brew tap k-vernooy/tap
-brew install tetris
+    pandoc
+# brew tap k-vernooy/tap
+# brew install tetris
 brew cleanup
