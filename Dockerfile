@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bullseye-slim
 LABEL maintainer "d-r-e aka darodrig"
 # base software
 	RUN apt-get update
@@ -26,6 +26,7 @@ LABEL maintainer "d-r-e aka darodrig"
 		zsh \
 		patch \
 		libncurses5-dev
+RUN apt-get install -yq texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
 
 	RUN pip3 install pandas numpy jupyter sklearn matplotlib keras
 # set zsh as default shell
