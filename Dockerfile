@@ -9,6 +9,8 @@ LABEL maintainer "d-r-e aka darodrig"
 		make \
 		clang \
 		gcc \
+		gdb \
+		less \
 		g++ \
 		git \
 		valgrind \
@@ -25,8 +27,10 @@ LABEL maintainer "d-r-e aka darodrig"
 		python3-pip \
 		zsh \
 		patch \
-		libncurses5-dev
-RUN apt-get install -yq texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+		libncurses5-dev \
+		hashid
+# RUN apt-get install -yq texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+RUN apt-get install -yq latexmk pandoc
 
 	RUN pip3 install pandas numpy jupyter sklearn matplotlib keras
 # set zsh as default shell
@@ -49,7 +53,10 @@ RUN apt-get install -yq texlive-latex-base texlive-fonts-recommended texlive-fon
 # install github cli
 	RUN wget https://github.com/cli/cli/releases/download/v2.2.0/gh_2.2.0_linux_amd64.deb && \
 		dpkg -i gh_2.2.0_linux_amd64.deb && rm gh_2.2.0_linux_amd64.deb
-RUN apt-get install -yq sudo
-RUN apt-get autoremove -yq && apt-get clean && apt-get autoclean
-    RUN pip3 install norminette
+RUN apt-get install -y rustc cargo
+# cleanup
+	RUN apt-get install -yq sudo
+	RUN apt-get install -yq file fdisk lsof
+	RUN apt-get autoremove -yq
+
 ENTRYPOINT [ "/usr/bin/zsh" ]
