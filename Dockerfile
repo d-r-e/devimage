@@ -54,6 +54,7 @@ RUN apt-get install -yq latexmk pandoc
 	RUN wget https://github.com/cli/cli/releases/download/v2.2.0/gh_2.2.0_linux_amd64.deb && \
 		dpkg -i gh_2.2.0_linux_amd64.deb && rm gh_2.2.0_linux_amd64.deb
 RUN apt-get install -y rustc cargo
+RUN apt-get install -y tcpdump john
 # cleanup
 	RUN apt-get install -yq sudo
 	RUN apt-get install -yq file fdisk lsof
