@@ -1,8 +1,8 @@
-FROM debian:bullseye-slim
+FROM debian:bullseye
 LABEL maintainer "d-r-e aka darodrig"
 # base software
 	RUN apt-get update
-	RUN apt-get --no-install-recommends install -yq \
+	RUN apt-get install -yq \
 		wget \
 		curl \
 		vim \
@@ -28,15 +28,17 @@ LABEL maintainer "d-r-e aka darodrig"
 		zsh \
 		patch \
 		libncurses5-dev \
-		hashid
+		hashid \
+		python
 # RUN apt-get install -yq texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
-RUN apt-get install -yq latexmk pandoc
+# RUN apt-get install -yq latexmk pandoc
 
 	RUN pip3 install pandas numpy jupyter sklearn matplotlib keras
 # set zsh as default shell
 	ENV SHELL /usr/bin/zsh
 # install radare2
 	RUN git clone https://github.com/radareorg/radare2 && radare2/sys/install.sh
+	# RUN r2pm init && r2pm install r2dec
 # tetris (beacause sometimes we need a break)
 	RUN git clone 'https://github.com/k-vernooy/tetris' && cd tetris && make && make install
 # oh-my-zsh with autosuggestions and the gozzilla theme
@@ -55,7 +57,13 @@ RUN apt-get install -yq latexmk pandoc
 		dpkg -i gh_2.2.0_linux_amd64.deb && rm gh_2.2.0_linux_amd64.deb
 RUN apt-get install -y rustc cargo
 RUN apt-get install -y tcpdump john
-# cleanup
+RUN curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall
+
+# RUN sed -i 's/systemctl status ${PG_SERVICE}/service ${PG_SERVICE} status/g' /usr/bin/msfdb && \
+# 	service postgresql start && \
+# 	msfdb reinit
+
+
 	RUN apt-get install -yq sudo
 	RUN apt-get install -yq file fdisk lsof
 	RUN apt-get autoremove -yq
